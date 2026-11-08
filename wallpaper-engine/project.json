@@ -1,0 +1,107 @@
+{
+  "contentrating": "Everyone",
+  "description": "Exact 1:1 reproduction of the legendary Fishnoodle Fire live wallpaper with dynamic 3D flame particles, embers, interactive mouse bursts, and color presets.",
+  "file": "index.html",
+  "general": {
+    "properties": {
+      "schemecolor": {
+        "order": 0,
+        "text": "ui_browse_properties_scheme_color",
+        "type": "color",
+        "value": "1 0.5 0"
+      },
+      "colorpreset": {
+        "order": 1,
+        "text": "Color Palette Preset",
+        "type": "combo",
+        "value": "classic",
+        "options": [
+          {"label": "Classic Fire (Amber / Red)", "value": "classic"},
+          {"label": "Blue Ice", "value": "blue"},
+          {"label": "Emerald Fire", "value": "emerald"},
+          {"label": "Purple Haze", "value": "purple"},
+          {"label": "Cyan / Frost", "value": "cyan"},
+          {"label": "Toxic Green", "value": "toxic"},
+          {"label": "Custom (Use Pickers Below)", "value": "custom"}
+        ]
+      },
+      "colorbase": {
+        "order": 2,
+        "text": "Custom Base / Core Color",
+        "type": "color",
+        "value": "1.0 0.75 0.3"
+      },
+      "colortips": {
+        "order": 3,
+        "text": "Custom Tips Color",
+        "type": "color",
+        "value": "1.0 0.27 0.27"
+      },
+      "colorbg": {
+        "order": 4,
+        "text": "Background Color",
+        "type": "color",
+        "value": "0.0 0.0 0.0"
+      },
+      "flamespread": {
+        "order": 5,
+        "text": "Flame Width Spread",
+        "type": "combo",
+        "value": "auto",
+        "options": [
+          {"label": "Auto (Continuous for Ultrawide & Dual Screen)", "value": "auto"},
+          {"label": "5 Columns (Standard Panoramic)", "value": "5col"},
+          {"label": "7 Columns (Extra Wide Dual Screen)", "value": "7col"},
+          {"label": "3 Columns (Centered Focus)", "value": "3col"}
+        ]
+      },
+      "flamespeed": {
+        "order": 6,
+        "text": "Flame Speed (%)",
+        "type": "slider",
+        "min": 30,
+        "max": 250,
+        "value": 100
+      },
+      "sparkrate": {
+        "order": 7,
+        "text": "Spark / Ember Density (%)",
+        "type": "slider",
+        "min": 0,
+        "max": 250,
+        "value": 100
+      },
+      "mousebursts": {
+        "order": 8,
+        "text": "Mouse Click / Touch Sparks",
+        "type": "bool",
+        "value": true
+      },
+      "mousesway": {
+        "order": 9,
+        "text": "Mouse Movement Flame Sway",
+        "type": "bool",
+        "value": true
+      },
+      "targetfps": {
+        "order": 10,
+        "text": "Target Frame Rate",
+        "type": "combo",
+        "value": "60",
+        "options": [
+          {"label": "30 FPS (Power Saver)", "value": "30"},
+          {"label": "60 FPS (Balanced Smoothness)", "value": "60"},
+          {"label": "120 FPS (High Refresh)", "value": "120"},
+          {"label": "Unlocked / Display Native", "value": "0"}
+        ]
+      }
+    }
+  },
+  "preview": "preview.png",
+  "tags": ["Abstract", "Relaxing"],
+  "title": "Fishnoodle Fire Live Wallpaper",
+  "type": "web",
+  "version": 1,
+  "visibility": "public"
+}
+

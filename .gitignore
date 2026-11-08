@@ -1,0 +1,109 @@
+# ============================================================
+# GitIgnore para Proyecto Wallpaper
+# Multi-plataforma: Android (GLES20) + KDE Plasma 6 + Web Simulator + Wallpaper Engine
+# ============================================================
+
+# --- Gradle & Android Build Artifacts ---
+.gradle/
+build/
+**/build/
+local.properties
+.cxx/
+Captures/
+captures/
+output-metadata.json
+.externalNativeBuild/
+
+# Binarios y paquetes compilados
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Conservar Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# --- Claves y Certificados de Firma (Seguridad) ---
+*.keystore
+*.jks
+*.key
+*.pk8
+
+# --- Android Studio, IntelliJ & IDEs ---
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# --- Java & JVM Crash Logs ---
+*.class
+*.log
+hs_err_pid*.log
+
+# --- Qt, QML & KDE Plasma ---
+*.qmlc
+*.jsc
+*.kpackage
+CMakeLists.txt.user*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# --- Node.js & Web Tooling ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Archivos temporales, de descompilado y volcados ---
+scratch/
+scratch_decode.py
+*.zip
+*.tar.gz
+*.tar
+*.tgz
+*.bak
+*.tmp
+*.temp
+
+# --- Videos y capturas pesadas de prueba ---
+*.mp4
+*.mkv
+*.webm
+
+# --- Proyectos antiguos / obsoletos de referencia ---
+android-project/
+
+# --- Runtime local & Enlaces simbólicos generados ---
+wallpaper-library/
+
+# --- Sistema Operativo & Editores de Texto ---
+# Linux & KDE
+.directory
+*~
+*.swp
+*.swo
+*.swn
+core
+core.*
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

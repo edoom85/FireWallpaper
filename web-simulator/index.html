@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fishnoodle Fire Simulator</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+
+  .container { display: flex; gap: 24px; padding: 20px; align-items: flex-start; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1300px; }
+
+  .canvas-wrap { position: relative; flex-shrink: 0; transition: all 0.3s ease; }
+  #fireCanvas { display: block; border-radius: 12px; box-shadow: 0 0 60px rgba(255,100,0,0.4); max-width: 100%; height: auto; }
+
+  .panel {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 16px;
+    padding: 20px;
+    min-width: 280px;
+    max-width: 320px;
+    color: #ddd;
+  }
+
+  .panel h2 { font-size: 18px; color: #ff6a00; margin-bottom: 16px; letter-spacing: 1px; }
+  .panel h3 { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 2px; margin: 16px 0 10px; }
+
+  .mode-section { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .mode-btn {
+    padding: 8px 4px; border: 1px solid #2a2a2a; background: #1a1a1a;
+    border-radius: 8px; font-size: 11px; color: #aaa; cursor: pointer;
+    transition: all 0.2s; text-align: center;
+  }
+  .mode-btn:hover { border-color: #ff6a00; color: #ff6a00; background: #1e1200; }
+  .mode-btn.active { border-color: #ff6a00; color: #ff8c00; background: #1e1200; }
+
+
+  .color-section { display: grid; gap: 8px; }
+
+  .color-row {
+    display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+    background: #1a1a1a; border-radius: 8px; cursor: pointer;
+    transition: background 0.2s; border: 1px solid #2a2a2a;
+  }
+  .color-row:hover { background: #222; }
+  .color-swatch { width: 28px; height: 28px; border-radius: 6px; border: 2px solid #333; flex-shrink: 0; }
+  .color-label { font-size: 12px; color: #aaa; flex: 1; }
+  .color-hex { font-size: 11px; color: #555; font-family: monospace; }
+
+  input[type="color"] { display: none; }
+
+  .preset-section { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .preset-btn {
+    padding: 8px 6px; border: 1px solid #2a2a2a; background: #1a1a1a;
+    border-radius: 8px; font-size: 11px; color: #aaa; cursor: pointer;
+    transition: all 0.2s; text-align: center;
+  }
+  .preset-btn:hover { border-color: #ff6a00; color: #ff6a00; background: #1e1200; }
+  .preset-btn.active { border-color: #ff6a00; color: #ff8c00; background: #1e1200; }
+  .preset-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+
+  .info { font-size: 11px; color: #444; margin-top: 16px; line-height: 1.6; }
+  .fps { font-size: 11px; color: #333; margin-top: 8px; }
+
+  h1 { font-size: 14px; color: #ff6a00; padding: 16px 0 0; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7; }
+</style>
+</head>
+<body>
+<h1>🔥 Fishnoodle Fire Simulator</h1>
+<div class="container">
+  <div class="canvas-wrap">
+    <canvas id="fireCanvas" width="360" height="750"></canvas>
+  </div>
+
+  <div class="panel">
+    <h2>🎨 Color Palette</h2>
+    
+    <h3>Screen Mode</h3>
+    <div class="mode-section">
+      <button class="mode-btn active" id="mode-portrait" onclick="setMode('portrait')">📱 Portrait</button>
+      <button class="mode-btn" id="mode-landscape" onclick="setMode('landscape')">🖥️ Landscape</button>
+      <button class="mode-btn" id="mode-fullscreen" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+    </div>
+
+    <h3>Presets</h3>
+    <div class="preset-section">
+      <button class="preset-btn active" id="preset-classic" onclick="applyPreset('classic')">
+        <span class="preset-dot" style="background:#ff8c00"></span>Classic
+      </button>
+      <button class="preset-btn" id="preset-blue" onclick="applyPreset('blue')">
+        <span class="preset-dot" style="background:#00bfff"></span>Blue Ice
+      </button>
+      <button class="preset-btn" id="preset-emerald" onclick="applyPreset('emerald')">
+        <span class="preset-dot" style="background:#00e676"></span>Emerald
+      </button>
+      <button class="preset-btn" id="preset-purple" onclick="applyPreset('purple')">
+        <span class="preset-dot" style="background:#e040fb"></span>Purple
+      </button>
+      <button class="preset-btn" id="preset-cyan" onclick="applyPreset('cyan')">
+        <span class="preset-dot" style="background:#00e5ff"></span>Cyan
+      </button>
+      <button class="preset-btn" id="preset-toxic" onclick="applyPreset('toxic')">
+        <span class="preset-dot" style="background:#aeea00"></span>Toxic
+      </button>
+    </div>
+
+    <h3>Custom Colors</h3>
+    <div class="color-section">
+      <div class="color-row" onclick="document.getElementById('pickBase').click()">
+        <div class="color-swatch" id="swatchBase"></div>
+        <span class="color-label">Base / Core</span>
+        <span class="color-hex" id="hexBase">#ffffff</span>
+        <input type="color" id="pickBase" value="#ffffff" oninput="onColorChange('base', this.value)">
+      </div>
+      <div class="color-row" onclick="document.getElementById('pickMiddle').click()">
+        <div class="color-swatch" id="swatchMiddle"></div>
+        <span class="color-label">Middle Flame</span>
+        <span class="color-hex" id="hexMiddle">#ff8f00</span>
+        <input type="color" id="pickMiddle" value="#ff8f00" oninput="onColorChange('middle', this.value)">
+      </div>
+      <div class="color-row" onclick="document.getElementById('pickTips').click()">
+        <div class="color-swatch" id="swatchTips"></div>
+        <span class="color-label">Tips / Outer</span>
+        <span class="color-hex" id="hexTips">#d84315</span>
+        <input type="color" id="pickTips" value="#d84315" oninput="onColorChange('tips', this.value)">
+      </div>
+      <div class="color-row" onclick="document.getElementById('pickBg').click()">
+        <div class="color-swatch" id="swatchBg"></div>
+        <span class="color-label">Background</span>
+        <span class="color-hex" id="hexBg">#000000</span>
+        <input type="color" id="pickBg" value="#000000" oninput="onColorChange('bg', this.value)">
+      </div>
+    </div>
+
+    <div class="info">
+      💡 Touch/click on the canvas to interact with the fire
+    </div>
+    <div class="fps" id="fpsLabel">FPS: --</div>
+  </div>
+</div>
+
+<script src="simulator.js"></script>
+</body>
+</html>

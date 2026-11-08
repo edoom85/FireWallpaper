@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ignis Live Wallpaper</string>
+    <string name="wallpaper_description">Realistic 3D OpenGL ES 2.0 Fire Live Wallpaper</string>
+    <string name="set_wallpaper">Set as Live Wallpaper</string>
+    <string name="settings">Settings</string>
+    
+    <string name="pref_startcolor_def">1.0 0.75 0.3 1.0</string>
+    <string name="pref_destcolor_def">1.0 0.27 0.27 1.0</string>
+    <string name="pref_hotspot_def">fire</string>
+    <string name="pref_flamedensity_def">5</string>
+    <string name="pref_flamenoise_def">5</string>
+</resources>

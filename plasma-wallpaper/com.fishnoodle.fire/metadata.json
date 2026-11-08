@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Wallpaper",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Fishnoodle Fire"
+            }
+        ],
+        "Category": "",
+        "Description": "Fishnoodle Fire Live Wallpaper with 3D particles & presets",
+        "Icon": "preferences-desktop-wallpaper",
+        "Id": "com.fishnoodle.fire",
+        "License": "GPLv2+",
+        "Name": "Fishnoodle Fire",
+        "ServiceTypes": [
+            "Plasma/Wallpaper"
+        ],
+        "Version": "1.0"
+    },
+    "X-KDE-ParentApp": "org.kde.plasmashell",
+    "X-Plasma-MainScript": "ui/main.qml"
+}
+
